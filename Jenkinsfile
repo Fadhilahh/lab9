@@ -9,9 +9,9 @@ pipeline {
     stage('Code Quality Check via SonarQube') {
         steps {
             script {
-                def scannerHome = tool 'SonarQube';
-                withSonarQubeEnv('SonarQube') {
-                sh "sonar-scanner.bat -D"sonar.projectKey=OWASP" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=sqp_d113ffccb03e324450f29701f46efcaefa3429ee""
+                def scannerHome = tool 'server-sonar';
+                withSonarQubeEnv('server-sonar') {
+                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=OWASP -Dsonar.sources=."
          }
       }
     }
